@@ -1,4 +1,4 @@
-<h1>WeFly</h1>
+<h1>${\textsf{\color{blue}WeFly}}$</h1>
 
 <strong>WeFly</strong> is a database schema designed to manage data related to flights such as airlines, employees, flight information, 
 aircraft, airports, and more.
