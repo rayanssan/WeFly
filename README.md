@@ -5,58 +5,57 @@ aircraft, airports, and more.
 
 - Tables:
 
-  1. Airline Table
-  Purpose: Stores information about airlines.
-  Attributes: ICAO (3-character code), IATA (2-character code), Name, CountryOfOrigin.
-  Constraints: Primary key on ICAO.
+  1. Airline Table<br>
+  Purpose: Stores information about airlines.<br>
+  Attributes: `ICAO, IATA, Name, CountryOfOrigin`<br>
+  Constraints: Primary key on `ICAO`.
 
-  2. Employee Table
-  Purpose: Stores information about airline employees.
-  Attributes: ID, NIF, Name, Gender, DateOfBirth, EmployedBy (references Airline.ICAO), EmployedSince, Role.
-  Constraints: Primary key on ID, foreign key on EmployedBy.
+  3. Employee Table<br>
+  Purpose: Stores information about airline employees.<br>
+  Attributes: `ID, NIF, Name, Gender, DateOfBirth, EmployedBy (references Airline.ICAO), EmployedSince, Role`<br>
+  Constraints: Primary key on `ID`, foreign key on `EmployedBy`.
 
-  3. Pilot Table
-  Purpose: Extends Employee for pilots and stores additional pilot-specific information.
-  Attributes: ID (foreign key to Employee), IsTrainingPilotUntil (date).
-  Constraints: Primary key on ID, foreign key on ID referencing Employee.
+  4. Pilot Table<br>
+  Purpose: Extends Employee for pilots and stores additional pilot-specific information.<br>
+  Attributes: `ID (references Employee.ID), IsTrainingPilotUntil`<br>
+  Constraints: Primary key on ID, foreign key on `ID` referencing Employee.
 
-  4. PilotQualifications Table
-  Purpose: Tracks qualifications of pilots.
-  Attributes: ID (foreign key to Pilot), Manufacturer, PlaneModelCode, Since, HoursOfFlight.
-  Constraints: Composite primary key on ID, Manufacturer, PlaneModelCode; foreign key on ID.
+  5. PilotQualifications Table<br>
+  Purpose: Tracks qualifications of pilots.<br>
+  Attributes: `ID (references Pilot.ID), Manufacturer, PlaneModelCode, Since, HoursOfFlight`<br>
+  Constraints: Composite primary key on `ID`, `Manufacturer`, `PlaneModelCode`; foreign key on `ID`.
 
-  5. TechnicianQualifications Table
-  Purpose: Tracks qualifications of technicians.
-  Attributes: ID (foreign key to Employee), QualificationType.
-  Constraints: Foreign key on ID, allowing only technicians to be added.
+  6. TechnicianQualifications Table<br>
+  Purpose: Tracks qualifications of technicians.<br>
+  Attributes: `ID (references Employee.ID), QualificationType`<br>
+  Constraints: Foreign key on `ID`, allowing only technicians to be added.
 
-  6. Country Table
-  Purpose: Stores information about countries.
-  Attributes: CountryCode, Name.
-  Constraints: Primary key on CountryCode.
-  Usage Example: Provides details about countries like Portugal, United States, etc.
+  7. Country Table<br>
+  Purpose: Stores information about countries.<br>
+  Attributes: `CountryCode, Name`<br>
+  Constraints: Primary key on `CountryCode`.
 
-  7. Airport Table
-  Purpose: Stores information about airports.
-  Attributes: ICAO, IATA, Name, CountryCode, City, Coordinates, OpeningHour, ClosingHour, MinimumTransferTime, MaximumSupportedPlaneSize.
-  Constraints: Primary key on ICAO, check constraint on MaximumSupportedPlaneSize.
+  8. Airport Table<br>
+  Purpose: Stores information about airports.<br>
+  Attributes: `ICAO, IATA, Name, CountryCode, City, Coordinates, OpeningHour, ClosingHour, MinimumTransferTime, MaximumSupportedPlaneSize`<br>
+  Constraints: Primary key on `ICAO`, check constraint on `MaximumSupportedPlaneSize`.
 
-  8. Aircraft Table
-  Purpose: Stores information about aircraft.
-  Attributes: TailNumber, ModelCode, Manufacturer, ManufactureYear, MinimumFlightHours, RequiredNumberOfFlightAttendants, AircraftSize, OwnedBy (references Airline.ICAO).
-  Constraints: Composite primary key on TailNumber, OwnedBy; foreign key on OwnedBy.
+  9. Aircraft Table<br>
+  Purpose: Stores information about aircraft.<br>
+  Attributes: `TailNumber, ModelCode, Manufacturer, ManufactureYear, MinimumFlightHours, RequiredNumberOfFlightAttendants, AircraftSize, OwnedBy (references Airline.ICAO)`<br>
+  Constraints: Composite primary key on `TailNumber`, `OwnedBy`; foreign key on `OwnedBy`.
 
-  9. Flight Table
-  Purpose: Stores information about flights.
-  Attributes: FlightIdentifier, OperatedBy (references Airline.ICAO), FlightCode, BasePrice, AssignedToAircraft, Origin, Destination, Distance, EstimatedDepartureTime, RealDepartureTime, EstimatedArrivalTime, RealArrivalTime, IsCancelled, IsPartOfNonDirectFlight, NonDirectFlightRoutingCode, ConnectsFromFlightCode, ConnectsToFlightCode.
-  Constraints: Composite primary key on FlightCode, EstimatedDepartureTime, EstimatedArrivalTime; various foreign keys and check constraints.
+  10. Flight Table<br>
+  Purpose: Stores information about flights.<br>
+  Attributes: `FlightIdentifier, OperatedBy (references Airline.ICAO), FlightCode, BasePrice, AssignedToAircraft, Origin, Destination, Distance, EstimatedDepartureTime, RealDepartureTime, EstimatedArrivalTime, RealArrivalTime, IsCancelled, IsPartOfNonDirectFlight, NonDirectFlightRoutingCode, ConnectsFromFlightCode, ConnectsToFlightCode`<br>
+  Constraints: Composite primary key on `FlightCode`, `EstimatedDepartureTime`, `EstimatedArrivalTime`; various foreign keys and check constraints.
 
-  10. FlightEmployees Table
-  Purpose: Tracks employees assigned to flights.
-  Attributes: ID (references Employee.ID), AssignedToFlight (references Flight.FlightCode), Role.
-  Constraints: Composite primary key on ID, AssignedToFlight; various triggers enforce business rules.
+  11. FlightEmployees Table<br>
+  Purpose: Tracks employees assigned to flights.<br>
+  Attributes: `ID (references Employee.ID), AssignedToFlight (references Flight.FlightCode), Role`<br>
+  Constraints: Composite primary key on `ID`, `AssignedToFlight`; various triggers enforce business rules.
 
-  11. Seat Table
-  Purpose: Stores information about seats in aircraft.
-  Attributes: SeatID, InAircraft (references Aircraft.TailNumber), Class, SeatPrice.
-  Constraints: Composite primary key on SeatID, InAircraft; triggers enforce data integrity.
+  12. Seat Table<br>
+  Purpose: Stores information about seats in aircraft.<br>
+  Attributes: `SeatID, InAircraft (references Aircraft.TailNumber), Class, SeatPrice`<br>
+  Constraints: Composite primary key on `SeatID`, `InAircraft`; triggers enforce data integrity.
