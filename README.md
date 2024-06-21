@@ -18,7 +18,7 @@ aircraft, airports, and more.
   4. Pilot Table<br>
   Purpose: Extends Employee for pilots and stores additional pilot-specific information.<br>
   Attributes: `ID (references Employee.ID), IsTrainingPilotUntil`<br>
-  Constraints: Primary key on ID, foreign key on `ID` referencing Employee.
+  Constraints: Primary key on `ID`, foreign key on `ID` referencing Employee.
 
   5. PilotQualifications Table<br>
   Purpose: Tracks qualifications of pilots.<br>
