@@ -59,3 +59,18 @@ aircraft, airports, and more.
   Purpose: Stores information about seats in aircraft.<br>
   Attributes: `SeatID, InAircraft (references Aircraft.TailNumber), Class, SeatPrice`<br>
   Constraints: Composite primary key on `SeatID`, `InAircraft`; triggers enforce data integrity.
+
+  13. Passenger Table<br>
+  Purpose: Stores information about passengers.<br>
+  Attributes: `NIC, NIF, Name, PhoneNumber, Email, isFrequentFlyer`<br>
+  Constraints: Primary key on `NIC`, unique constraint on `NIF`, various data integrity constraints.
+
+  14. FrequentPassenger Table<br>
+  Purpose: Stores information about frequent passengers of airlines.<br>
+  Attributes: `PassengerNIC, AirlineICAO, FrequentFlyerTier, Miles, HasJulesVerneBonus`<br>
+  Constraints: Composite primary key on `PassengerNIC` and `AirlineICAO`, foreign keys on `PassengerNIC` and `AirlineICAO`.
+
+  15. Ticket Table<br>
+  Purpose: Stores information about tickets purchased by passengers for flights.<br>
+  Attributes: `ReceiptNumber, ForSeat, ForFlight, InAircraft, BookedBy, FullPrice`<br>
+  Constraints: Primary key on `ReceiptNumber`, foreign keys on `ForSeat`, `ForFlight`, and `BookedBy`; unique constraint on `(ForFlight, BookedBy)`.
