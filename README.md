@@ -74,3 +74,6 @@ aircraft, airports, and more.
   Purpose: Stores information about tickets purchased by passengers for flights.<br>
   Attributes: `ReceiptNumber, ForSeat, ForFlight, InAircraft, BookedBy, FullPrice`<br>
   Constraints: Primary key on `ReceiptNumber`, foreign keys on `ForSeat`, `ForFlight`, and `BookedBy`; unique constraint on `(ForFlight, BookedBy)`.
+
+<strong>Developed By:</strong>
+Rayan S. Santana
